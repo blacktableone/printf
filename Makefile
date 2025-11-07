@@ -7,12 +7,12 @@ RM = rm -f
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS =
+SRCS = ft_printf.c ft_printf_helper1.c ft_printf_helper2.c
 OBJS = $(SRCS:.c=.o)
 
-all:$(NAME)
+all: $(NAME)
 
-$(Name): $(OBJS)
+$(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	cp $(LIBFT) .
 	$(AR) $(NAME) $(OBJS) $(LIBFT_DIR)/*.o
@@ -27,6 +27,8 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: $(NAME)
+	$(CC) $(CFLAGS) main.c -L. -lftprintf -o test
+	./test
 
-
+.PHONY: all clean fclean re test
