@@ -6,7 +6,7 @@
 /*   By: zuzu <zuzu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:27:59 by zuzu              #+#    #+#             */
-/*   Updated: 2025/11/06 22:34:35 by zuzu             ###   ########.fr       */
+/*   Updated: 2026/02/19 23:51:38 by zuzu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,25 @@ int	main(void)
 	ret1 = ft_printf("%c%c%c*", '\0', '1', 1);
     ret2 = printf("%c%c%c*", '\0', '1', 1);
     printf("ft_printf returned: %d, printf returned: %d\n", ret1, ret2);
+
+	int ret_mine, ret_real;
+
+    printf("--- 测试无效转换符 (%%y) ---\n");
+    // 测试 %y (y 不是定义的转换符)
+    ret_mine = ft_printf("Mine: [%y]\n");
+    ret_real =    printf("Real: [%y]\n");
+    printf("返回值: Mine: %d | Real: %d\n\n", ret_mine, ret_real);
+
+    printf("--- 测试末尾单独的 %% ---\n");
+    // 测试字符串末尾只有一个 %
+    ret_mine = ft_printf("Mine: [%%]\n"); // 注意：C语言中代码里写 %% 代表打印一个 %
+    ret_real =    printf("Real: [%%]\n");
+    printf("返回值: Mine: %d | Real: %d\n\n", ret_mine, ret_real);
+
+    printf("--- 测试无效格式跟随有效格式 ---\n");
+    ret_mine = ft_printf("Mine: %y %s %k\n", "test");
+    ret_real =    printf("Real: %y %s %k\n", "test");
+    printf("返回值: Mine: %d | Real: %d\n", ret_mine, ret_real);
 
     return (0);
 }

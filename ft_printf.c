@@ -6,7 +6,7 @@
 /*   By: zuzu <zuzu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:22:46 by zuzu              #+#    #+#             */
-/*   Updated: 2025/11/06 22:51:12 by zuzu             ###   ########.fr       */
+/*   Updated: 2026/02/19 23:55:20 by zuzu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_handle_format(char specifier, va_list *args)
 		count += ft_puthex(va_arg(*args, unsigned int), 'X');
 	else if (specifier == '%')
 		count += ft_putchar('%');
+	else
+		count += ft_putchar(specifier);
 	return (count);
 }
 
